@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 
 import { sidebarLinks } from '@/constants';
 
-const Bottombar = () => {
+function Bottombar() {
   const pathname = usePathname();
 
   return (
@@ -20,17 +20,19 @@ const Bottombar = () => {
           return (
             <Link
               href={link.route}
-              key={link.route}
+              key={link.label}
               className={`bottombar_link ${isActive && 'bg-primary-500'}`}
             >
               <Image
                 src={link.imgURL}
                 alt={link.label}
-                width={24}
-                height={24}
+                width={16}
+                height={16}
+                className="object-contain"
               />
+
               <p className="text-subtle-medium text-light-1 max-sm:hidden">
-                {link.label.split(/\s+./)[0]}
+                {link.label.split(/\s+/)[0]}
               </p>
             </Link>
           );
@@ -38,6 +40,6 @@ const Bottombar = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Bottombar;
